@@ -19,8 +19,8 @@ public class TeamUtils {
   }
 
   public static void revealResults(List<Team> teams) {
-    if (teams.size() == 0) {
-      return;
+    if (teams.size() == 0 || teams.get(1).getScores().size() == 0) {
+      System.out.println("The game hasn't started yet.\n");
     } else {
       ArrayList<Team> teamArray = new ArrayList<Team>();
       for (int i = 0; i < teams.size(); i++) {
@@ -32,10 +32,11 @@ public class TeamUtils {
       System.out.println("Now for the results, the WINNER is...");
 
       for (int i = 0; i < teamArray.size(); i++) {
-        if (teamArray.get(i).sumTotalScore() == teamArray.get(i + 1).sumTotalScore()) {
+        if (i + 1 < teamArray.size() && teamArray.get(i).sumTotalScore() == teamArray.get(i + 1).sumTotalScore()) {
+          System.out.println("It's a TIE!");
           System.out.println(
               "With " + teamArray.get(i).sumTotalScore() + " points, it's team " + teamArray.get(i).getPlayer1()
-                  + " and " + teamArray.get(i).getPlayer2() + "!\n");
+                  + " and " + teamArray.get(i).getPlayer2() + "!");
           System.out.println(
               "With " + teamArray.get(i + 1).sumTotalScore() + " points, it's team " + teamArray.get(i + 1).getPlayer1()
                   + " and " + teamArray.get(i + 1).getPlayer2() + "!\n");
@@ -46,7 +47,7 @@ public class TeamUtils {
                   + " and " + teamArray.get(i).getPlayer2() + "!\n");
         }
         if (i < (teamArray.size() - 1)) {
-          System.out.println("Then we have... \n");
+          System.out.println("Then we have...");
         }
       }
 
